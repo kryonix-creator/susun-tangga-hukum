@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web Pertamaku - Susun Tangga Hukum</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Pertama Ku</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>🏛️ Susun Tangga Hukum 🇮🇩</h1>
-  <p class="intro">
-    Susunlah tingkatan peraturan perundang-undangan di Indonesia dari yang tertinggi hingga terendah!
-    <br />Tarik dan letakkan blok hukum ke posisi yang benar.
-  </p>
+  <h1>🎯 Web Pertama Ku 🎯</h1>
+  <p>Klik bola sebanyak mungkin sebelum waktunya habis!</p>
 
-  <div id="game-container">
-    <div id="blocks" class="section">
-      <h2>🧩 Blok Hukum (acak)</h2>
-      <div class="block" draggable="true">UUD 1945</div>
-      <div class="block" draggable="true">Peraturan Pemerintah</div>
-      <div class="block" draggable="true">Undang-Undang / Perppu</div
+  <div id="game-area">
+    <div id="ball"></div>
+  </div>
+
+  <div id="info">
+    <p>Skor: <span id="score">0</span></p>
+    <p>Waktu: <span id="time">30</span> detik</p>
+    <button id="start-btn">Mulai Game</button>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
