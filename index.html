@@ -1,40 +1,64 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Susun Tangga Hukum Negaraku</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <h1>🧩 Susun Tangga Hukum Negaraku</h1>
-  <p>Susun urutan peraturan perundang-undangan dari yang tertinggi ke terendah!</p>
+const blocksContainer = document.getElementById("blocks");
+const slots = document.querySelectorAll(".slot");
+const result = document.getElementById("result");
+const checkBtn = document.getElementById("check");
 
-  <div id="game">
-    <div id="blocks">
-      <div class="block" draggable="true">Peraturan Daerah</div>
-      <div class="block" draggable="true">Peraturan Presiden</div>
-      <div class="block" draggable="true">Peraturan Pemerintah</div>
-      <div class="block" draggable="true">Perppu</div>
-      <div class="block" draggable="true">Undang-Undang</div>
-      <div class="block" draggable="true">Ketetapan MPR</div>
-      <div class="block" draggable="true">UUD 1945</div>
-    </div>
+// Ambil semua elemen block
+let blocks = Array.from(document.querySelectorAll(".block"));
+let draggedBlock = null;
 
-    <div id="ladder">
-      <div class="slot" data-correct="UUD 1945"></div>
-      <div class="slot" data-correct="Ketetapan MPR"></div>
-      <div class="slot" data-correct="Undang-Undang"></div>
-      <div class="slot" data-correct="Perppu"></div>
-      <div class="slot" data-correct="Peraturan Pemerintah"></div>
-      <div class="slot" data-correct="Peraturan Presiden"></div>
-      <div class="slot" data-correct="Peraturan Daerah"></div>
-    </div>
-  </div>
+// --- Fungsi untuk mengacak urutan blok ---
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
-  <button id="check">Periksa Urutan</button>
-  <p id="result"></p>
+// --- Acak urutan blok saat pertama kali halaman dimuat ---
+shuffle(blocks);
 
-  <script src="scripts.js"></script>
-</body>
-</html>
+// Hapus isi lama, lalu tambahkan hasil acakan ke container
+blocks.forEach(block => {
+  blocksContainer.appendChild(block);
+});
+
+// --- Event drag and drop ---
+blocks.forEach(block => {
+  block.addEventListener("dragstart", () => {
+    draggedBlock = block;
+    block.style.opacity = "0.5";
+  });
+  block.addEventListener("dragend", () => {
+    draggedBlock.style.opacity = "1";
+    draggedBlock = null;
+  });
+});
+
+slots.forEach(slot => {
+  slot.addEventListener("dragover", e => e.preventDefault());
+  slot.addEventListener("drop", () => {
+    if (slot.children.length === 0) {
+      slot.appendChild(draggedBlock);
+    }
+  });
+});
+
+// --- Tombol periksa urutan ---
+checkBtn.addEventListener("click", () => {
+  let correct = 0;
+  slots.forEach(slot => {
+    if (slot.children.length > 0 && slot.children[0].textContent === slot.dataset.correct) {
+      correct++;
+    }
+  });
+
+  if (correct === 7) {
+    result.textContent = "🎉 Hebat! Semua urutan benar! Tangga hukummu kokoh! 🇮🇩";
+    result.style.color = "green";
+  } else {
+    result.textContent = `Kamu menyusun ${correct} dari 7 dengan benar. Coba lagi!`;
+    result.style.color = "red";
+  }
+});
+
