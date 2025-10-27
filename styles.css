@@ -1,102 +1,83 @@
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(to bottom right, #e3f2fd, #fff3e0);
+  background: linear-gradient(to bottom right, #e3f2fd, #fffde7);
   text-align: center;
   margin: 0;
-  padding: 0;
-  color: #333;
-}
-
-header {
-  background: #1976d2;
-  color: white;
-  padding: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  padding: 10px;
 }
 
 h1 {
-  margin-bottom: 10px;
+  color: #0d47a1;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
 }
 
-main {
-  padding: 20px;
-}
-
-#game {
+#game-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 70vh;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-.section {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  width: 320px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+#slots, #blocks {
+  display: grid;
+  gap: 8px;
+}
+
+#slots {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+#blocks {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 10px;
 }
 
 .block, .slot {
-  padding: 12px;
-  margin: 10px 0;
+  border: 2px dashed #1976d2;
   border-radius: 10px;
-  border: 2px dashed #ff9800;
-  cursor: grab;
-  background: #fff8e1;
-  transition: all 0.3s;
+  padding: 10px;
+  background: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s, background 0.2s;
 }
 
-.block:hover {
+.block.selected {
+  background: #bbdefb;
   transform: scale(1.05);
-  background: #ffe0b2;
 }
 
 .slot {
   background: #e3f2fd;
-  border: 2px dashed #42a5f5;
-  color: #333;
   min-height: 40px;
 }
 
-.slot.correct {
+.slot.filled {
   background: #c8e6c9;
-  border-color: #388e3c;
+  border: 2px solid #388e3c;
 }
 
-.slot.wrong {
-  background: #ffcdd2;
-  border-color: #d32f2f;
-}
-
-#control {
-  margin-top: 25px;
-}
-
-button {
+#check {
+  margin-top: 10px;
   padding: 10px 20px;
-  margin: 5px;
+  background: #1976d2;
+  color: white;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  color: white;
 }
 
-#check { background: #388e3c; }
-#check:hover { background: #2e7d32; }
-
-#reset { background: #f57c00; }
-#reset:hover { background: #ef6c00; }
+#check:hover {
+  background: #0d47a1;
+}
 
 #result {
+  margin-top: 8px;
   font-weight: bold;
-  margin-top: 15px;
-}
-
-footer {
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: #666;
 }
