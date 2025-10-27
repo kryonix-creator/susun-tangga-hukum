@@ -1,52 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Susun Tangga Hukum Negaraku</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>🏛️ Susun Tangga Hukum Negaraku 🇮🇩</h1>
-    <p>Susunlah tingkatan peraturan perundang-undangan dari yang tertinggi hingga terendah!</p>
-  </header>
+  <h1>🇮🇩 Susun Tangga Hukum Negaraku</h1>
+  <p>Ketuk blok, lalu ketuk posisi tangga untuk menyusunnya dari yang tertinggi ke terendah!</p>
 
-  <main>
-    <section id="game">
-      <div id="blocks" class="section">
-        <h2>🧩 Blok Hukum (Acak)</h2>
-        <div class="block" draggable="true">UUD 1945</div>
-        <div class="block" draggable="true">Ketetapan MPR</div>
-        <div class="block" draggable="true">Undang-Undang / Perppu</div>
-        <div class="block" draggable="true">Peraturan Pemerintah</div>
-        <div class="block" draggable="true">Peraturan Presiden</div>
-        <div class="block" draggable="true">Peraturan Daerah Provinsi</div>
-        <div class="block" draggable="true">Peraturan Daerah Kabupaten/Kota</div>
-      </div>
+  <div id="game-container">
+    <div id="slots"></div>
+    <div id="blocks"></div>
+  </div>
 
-      <div id="slots" class="section">
-        <h2>🏗️ Tangga Hukum Negara</h2>
-        <div class="slot" data-correct="UUD 1945">Tingkat 1</div>
-        <div class="slot" data-correct="Ketetapan MPR">Tingkat 2</div>
-        <div class="slot" data-correct="Undang-Undang / Perppu">Tingkat 3</div>
-        <div class="slot" data-correct="Peraturan Pemerintah">Tingkat 4</div>
-        <div class="slot" data-correct="Peraturan Presiden">Tingkat 5</div>
-        <div class="slot" data-correct="Peraturan Daerah Provinsi">Tingkat 6</div>
-        <div class="slot" data-correct="Peraturan Daerah Kabupaten/Kota">Tingkat 7</div>
-      </div>
-    </section>
-
-    <section id="control">
-      <button id="check">✅ Periksa Urutan</button>
-      <button id="reset">🔄 Acak Ulang</button>
-      <p id="result"></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Game Edukasi by Arfian Dwi Wijaya</p>
-  </footer>
+  <button id="check">Periksa Urutan</button>
+  <p id="result"></p>
 
   <script src="scripts.js"></script>
 </body>
