@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Susun Tangga Hukum Negaraku</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>🧩 Susun Tangga Hukum Negaraku</h1>
+  <p>Susun urutan peraturan perundang-undangan dari yang tertinggi ke terendah!</p>
+
+  <div id="game">
+    <div id="blocks">
+      <div class="block" draggable="true">Peraturan Daerah</div>
+      <div class="block" draggable="true">Peraturan Presiden</div>
+      <div class="block" draggable="true">Peraturan Pemerintah</div>
+      <div class="block" draggable="true">Perppu</div>
+      <div class="block" draggable="true">Undang-Undang</div>
+      <div class="block" draggable="true">Ketetapan MPR</div>
+      <div class="block" draggable="true">UUD 1945</div>
+    </div>
+
+    <div id="ladder">
+      <div class="slot" data-correct="UUD 1945"></div>
+      <div class="slot" data-correct="Ketetapan MPR"></div>
+      <div class="slot" data-correct="Undang-Undang"></div>
+      <div class="slot" data-correct="Perppu"></div>
+      <div class="slot" data-correct="Peraturan Pemerintah"></div>
+      <div class="slot" data-correct="Peraturan Presiden"></div>
+      <div class="slot" data-correct="Peraturan Daerah"></div>
+    </div>
+  </div>
+
+  <button id="check">Periksa Urutan</button>
+  <p id="result"></p>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
