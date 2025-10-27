@@ -1,39 +1,75 @@
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(to top, #f8f9fa, #d1e7ff);
+  background: linear-gradient(to bottom right, #eef2ff, #e0f7fa);
   text-align: center;
   padding: 20px;
+  color: #333;
 }
 
-#game {
+h1 {
+  color: #2b4b6f;
+  margin-bottom: 10px;
+}
+
+.intro {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+#game-container {
   display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
   flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
 }
 
-#blocks, #ladder {
-  border: 2px dashed #007bff;
-  border-radius: 10px;
-  padding: 10px;
+.section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 300px;
-  min-height: 350px;
-  background-color: #ffffffa0;
 }
 
-.block {
-  background-color: #007bff;
-  color: white;
-  padding: 10px;
-  margin: 5px;
+.block, .slot {
+  background: #fff3e0;
+  border: 2px dashed #f57c00;
+  margin: 10px 0;
+  padding: 12px;
   border-radius: 8px;
   cursor: grab;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.block:hover {
+  background: #ffe0b2;
+  transform: scale(1.05);
 }
 
 .slot {
-  border: 2px solid #ccc;
-  height: 40px;
-  margin: 8px 0;
-  background-color: #f8f9fa;
-  border-radius: 6px;
+  background: #e3f2fd;
+  border: 2px dashed #42a5f5;
+  color: #555;
+}
+
+#check {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #42a5f5;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+#check:hover {
+  background: #1e88e5;
+}
+
+#result {
+  margin-top: 15px;
+  font-weight: bold;
 }
