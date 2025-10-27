@@ -1,60 +1,56 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const blocksContainer = document.getElementById("blocks");
-  const slots = document.querySelectorAll(".slot");
-  const result = document.getElementById("result");
-  const checkBtn = document.getElementById("check");
+let score = 0;
+let time = 30;
+let timer;
+let gameActive = false;
 
-  let draggedBlock = null;
-  let blocks = Array.from(document.querySelectorAll(".block"));
+const ball = document.getElementById("ball");
+const scoreDisplay = document.getElementById("score");
+const timeDisplay = document.getElementById("time");
+const startBtn = document.getElementById("start-btn");
+const gameArea = document.getElementById("game-area");
 
-  // Fungsi acak urutan blok
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+startBtn.addEventListener("click", startGame);
+
+function startGame() {
+  score = 0;
+  time = 30;
+  gameActive = true;
+  scoreDisplay.textContent = score;
+  timeDisplay.textContent = time;
+  startBtn.disabled = true;
+  moveBall();
+  ball.style.display = "block";
+
+  timer = setInterval(() => {
+    time--;
+    timeDisplay.textContent = time;
+
+    if (time <= 0) {
+      endGame();
     }
-  }
+  }, 1000);
+}
 
-  // Acak posisi blok di awal
-  shuffle(blocks);
-  blocks.forEach(block => blocksContainer.appendChild(block));
-
-  // Event drag and drop
-  blocks.forEach(block => {
-    block.addEventListener("dragstart", () => {
-      draggedBlock = block;
-      block.style.opacity = "0.5";
-    });
-    block.addEventListener("dragend", () => {
-      block.style.opacity = "1";
-      draggedBlock = null;
-    });
-  });
-
-  slots.forEach(slot => {
-    slot.addEventListener("dragover", e => e.preventDefault());
-    slot.addEventListener("drop", () => {
-      if (slot.children.length === 0 && draggedBlock) {
-        slot.appendChild(draggedBlock);
-      }
-    });
-  });
-
-  // Cek urutan
-  checkBtn.addEventListener("click", () => {
-    let correct = 0;
-    slots.forEach(slot => {
-      if (slot.children.length > 0 && slot.children[0].textContent.trim() === slot.dataset.correct) {
-        correct++;
-      }
-    });
-
-    if (correct === slots.length) {
-      result.textContent = "🎉 Hebat! Semua urutan benar! Tangga hukummu kokoh! 🇮🇩";
-      result.style.color = "green";
-    } else {
-      result.textContent = `Kamu menyusun ${correct} dari ${slots.length} dengan benar. Coba lagi!`;
-      result.style.color = "red";
-    }
-  });
+ball.addEventListener("click", () => {
+  if (!gameActive) return;
+  score++;
+  scoreDisplay.textContent = score;
+  moveBall();
 });
+
+function moveBall() {
+  const areaWidth = gameArea.clientWidth - 40;
+  const areaHeight = gameArea.clientHeight - 40;
+  const x = Math.random() * areaWidth;
+  const y = Math.random() * areaHeight;
+  ball.style.left = `${x}px`;
+  ball.style.top = `${y}px`;
+}
+
+function endGame() {
+  clearInterval(timer);
+  gameActive = false;
+  ball.style.display = "none";
+  startBtn.disabled = false;
+  alert(`Waktu habis! Skor akhir kamu: ${score}`);
+}
